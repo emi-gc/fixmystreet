@@ -1,0 +1,36 @@
+/*color palette: https://coolors.co/palette/d8f3dc-b7e4c7-95d5b2-74c69d-52b788-40916c-2d6a4f-1b4332-081c15 */
+body{
+  background-color: #b7e4c7;
+}
+.navbar{
+  background-color: #40916c;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 15px;
+  border-color: #52b788;
+  }
+
+  .navbar-brand, .navbar, .nav-link{
+    color: #081c15 !important;
+    font-size: 25px;
+  }
+
+  .buttons-title, .map-title{
+    color: #081c15;
+  }
+  
+  .buttons-list .list-group-item {
+    background-color: #74c69d;
+  }
+  .btn-outline-primary {
+    border-color: #1b4332;
+    color: #1b4332;
+  }
+  .btn-outline-primary:hover{
+    background-color: #40916c;
+    border-color: #1b4332;
+    color: #1b4332;
+  }
+  .card{
+    background-color: #74c69d;
+  }
