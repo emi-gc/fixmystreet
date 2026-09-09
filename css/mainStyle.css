@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero {
+    height: calc(100vh - 72px);
+
+    background-image: url("../images/city.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+.hero-overlay {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background: rgba(23, 42, 58, 0.65);
+}
+
+.hero-content {
+    color: white;
+    max-width: 800px;
+    padding: 30px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin: 20px 0 35px;
+}
+
+.hero-content .btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+}
+.navbar {
+    background-color: #172A3A;
+    height: 72px;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #2A9D8F;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: white;
+}
+
+.btn-primary {
+    background-color: #E9C46A;
+    border: none;
+    color: #172A3A;
+}

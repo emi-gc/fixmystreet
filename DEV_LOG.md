@@ -1,7 +1,7 @@
 # Team Developer Log
 
 **Project Name:** [FixMyStreet]  
-**Team Members:** [Ian Uribe Maldonado, Member 2, Member 3]  
+**Team Members:** [Ian Uribe Maldonado, Jose Emiliano Gomez Cortes, Santiago de la Torre Zamudio]  
 **Active Repository Path:** [(https://github.com/emi-gc/fixmystreet.git)]
 
 ---
