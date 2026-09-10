@@ -56,13 +56,17 @@
 }
 .navbar {
     background-color: #172A3A;
-    height: 72px;
+    min-height: 72px;
 }
 
 .navbar-brand {
     color: white;
-    font-size: 1.6rem;
+    font-size: clamp(1.15rem, 4vw, 1.6rem);
     font-weight: 700;
+    max-width: calc(100% - 70px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .nav-link {
@@ -76,6 +80,29 @@
 .navbar-brand:hover,
 .navbar-brand:focus {
     color: white;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.15rem rgba(233, 196, 106, 0.45);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.navbar-collapse {
+    background-color: #172A3A;
+    padding: 12px 0;
+}
+
+@media (min-width: 992px) {
+    .navbar-collapse {
+        padding: 0;
+    }
 }
 
 .btn-primary {
