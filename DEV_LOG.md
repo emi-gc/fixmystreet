@@ -57,63 +57,58 @@ _What must be done next to build on this session's progress?_
 1. Define the final distribution we want for our web
 2. Start investigating about map apis.
 
-## Session [X] Log Entry
+## Session [3] Log Entry
 
 _Duplicate this section for each active coding session, class lab sprint, or out-of-class development block._
 
 ### ⏱️ Session Overview
 
-- **Date:** [YYYY-MM-DD]
-- **Module/Feature Scope:** [e.g., Express.js Server Setup / CSS Box Model Layout / React State Integration]
-- **Est. Time Invested:** [e.g., 2.5 hours]
-- **Active Developers:** [List names of team members who coded in this session]
+- **Date:** [2026-09-09]
+- **Module/Feature Scope:** [CSS styles / html about page / refining all html and one uniform style]
+- **Est. Time Invested:** [3 hours]
+- **Active Developers:** [Ian Uribe Maldonado]
 
 ### 🎯 Session Goals
 
 _Identify what you planned to accomplish before starting to write code._
 
-- [ ] Goal 1: [e.g., Set up Express backend server boilerplate on port 5000]
-- [ ] Goal 2: [e.g., Configure CORS and body-parser middleware]
-- [ ] Goal 3: [e.g., Test active server connection with a GET /api/health endpoint]
+- [ ] Goal 1: [ add a getting started section and a map preview onto the main page]
+- [ ] Goal 2: [ reformat the map page with the buttons ]
+- [ ] Goal 3: [ give a uniform style to the whole web]
 
 ### 🔨 Tasks Completed
 
 _Describe what you actually worked on during this session._
 
-- [x] **Boilerplate server setup:** Created `/server/server.js` and initialized npm workspace directory.
-- [x] **Configured API foundations:** Integrated Express, implemented standard server listening on fallback environment port `3000`.
-- [x] **Configured CORS:** Restocked server header settings to permit incoming fetch requests from our static frontend origin.
+- [x] **getting started and map preview:** created the map preview section and the getting started section with general description on the main page.
+- [x] **redo of map page:** changed the distribution of the buttons and map as well as making them addapt to the window size.
+- [x] **CSS styles:** restyled the map page so it follows the same color palette and style as the main page.
 
 ### 🧠 Concepts Mastered & Key Learnings
 
 _What technical concepts did you learn or consolidate during this session? Explain the underlying mechanics in 2-3 sentences._
 
-- **Underlying Mechanics:** We learned how Express middleware works as a sequential pipeline. When a request hits the server, it passes through `express.json()` to parse raw incoming payloads, then `cors()` to intercept and validate headers, before finally routing to our custom endpoint handlers. This prevents manual buffer parsing.
+- **DOM tree understanding:** I got a better understanding on how does the css manages to get a hold of different components based on certain notacion like the . or the # or separating elements with a space to get the inmediate child of the component.
+- **Managing the elements and alignment** Understood how to change the sizing and alignment of elements so that when the window's size changes, all the elements are still displayed neatly
 
 ### 🛠️ Systematic Bug & Error Tracker
 
 _Record technical roadblocks faced and how they were systematically resolved. Treat these as study guides for your Oral Defense!_
 
 - **Roadblock 1 (The Error):**
-  - ❌ _Error Message / Behavior:_ `Error: Listen EADDRINUSE: address already in use :::3000` when executing `node server.js`.
-  - ⚙️ _Diagnostic Action:_ Ran `lsof -i :3000` in the terminal to identify what background service was hijacking our target port.
-  - ✅ _Root Cause & Resolution:_ A previously crashed node process was left hanging on port 3000. Resolved by executing `kill -9 <PID>` to free up the port, and modified our server configuration to use a fallback port pattern: `const PORT = process.env.PORT || 5000;`.
-
-- **Roadblock 2 (The Error):**
-  - ❌ _Error Message / Behavior:_ `Access to fetch at 'http://localhost:5000/api/health' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy.`
-  - ⚙️ _Diagnostic Action:_ Examined incoming network request headers in Chrome DevTools Network Tab. Found `Access-Control-Allow-Origin` was missing from response headers.
-  - ✅ _Root Cause & Resolution:_ The backend was receiving requests but rejecting the browser's request origins. Resolved by installing the CORS package (`npm i cors`) and mounting it early in our middleware chain: `app.use(cors({ origin: 'http://127.0.0.1:5500' }))`.
+  - ❌ _Error Message / Behavior:_ Map not shrinking in size when making the window smaller.
+  - ⚙️ _Diagnostic Action:_ Checked which attributes where giving the map its size.
+  - ✅ _Root Cause & Resolution:_ The attribute width and height was set on % with no max-width declared so it grew indefinitely.
 
 ### 📚 Documentation & Reference Links
 
 _List any documentation, textbooks, or tutorials utilized during development._
 
-- MDN Web Docs - [Express/Node Introduction](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction)
-- Express.js Official Guide - [Using Middleware](https://expressjs.com/en/guide/using-middleware.html)
+- Bootstrap documentation - [Bootstrap](https://getbootstrap.com/docs/5.3/layout/grid/)
 
 ### 🔮 Next Horizon Actions
 
 _What must be done next to build on this session's progress?_
 
-1. Define a persistent database connection script using Mongoose to connect to MongoDB Atlas.
-2. Design the `/api/users` user model schema to validate email inputs and passwords.
+1. Learn how to make pop up windows to submit the reports when clickin on the buttons.
+2. Development of the js to manage the action listeners and forms interactions with the user.

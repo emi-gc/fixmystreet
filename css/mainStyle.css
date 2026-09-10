@@ -4,6 +4,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #1a4161;
+}
+
 .hero {
     height: calc(100vh - 72px);
 
@@ -13,27 +17,29 @@
     background-repeat: no-repeat;
 
     animation: fadeIn 1s ease-in;
+    
 }
 
+
 @keyframes fadeIn{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
-.hero-overlay {
+.hero-overlay, .map-overlay {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-
+    
     background: rgba(23, 42, 58, 0.65);
 }
 
-.hero-content {
+.hero-content{
     color: white;
     max-width: 800px;
     padding: 30px;
@@ -53,6 +59,31 @@
     padding: 12px 30px;
     font-size: 1.1rem;
     border-radius: 8px;
+}
+.map-section {
+    background-color: #1a4161;
+    padding: 50px;
+}
+
+.map-hero {
+    width: 85%;
+    height: 500px;
+
+    margin: 0 auto;
+
+    background-image: url("../images/mapAndPins.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    animation: fadeIn 1s ease-in;
+}
+
+.map-content {
+    color: rgba(66, 63, 63, 0.555);
 }
 .navbar {
     background-color: #172A3A;
@@ -109,4 +140,70 @@
     background-color: #E9C46A;
     border: none;
     color: #172A3A;
+}
+
+.first-steps-section {
+    padding: 100px;
+}
+.card.steps-card {
+    background-color: #E9C46A;
+    width: 18rem;
+    min-height: 330px;
+
+    animation: fadeIn 1s ease-in;
+}
+
+.steps-card-icon {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.card.map-card {
+    background-color: #E9C46A;
+    width: 100%;
+}
+
+.card.map-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.first-steps-title {
+    color: white;
+}
+
+.report-title {
+    color: white;
+    padding: 20px;
+    text-decoration: underline white 3px;
+
+    animation: fadeIn 1s ease;
+}
+
+.action-buttons-section {
+    padding-top: 100px;
+}
+
+.report-button {
+    width: 250px;
+    height: 60px;
+    font-weight: 50;
+
+    animation: fadeIn 1s ease-in;
+}
+
+.main-map-section {
+    padding: 20px 5% 50px;
+
+}
+
+.main-map-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    animation: fadeIn 1.5s linear;
 }
