@@ -207,3 +207,37 @@ body {
 
     animation: fadeIn 1.5s linear;
 }
+.main-content {
+    margin-top: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.map-section {
+    flex: 2;
+    display: flex;
+}
+
+.report-section {
+    flex: 1;
+    display: flex;
+}
+
+.map-section .card,
+.report-section .card {
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .map-section,
+    .report-section {
+        width: 100%;
+    }
+}
