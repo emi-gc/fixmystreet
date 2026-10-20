@@ -1,32 +1,42 @@
-**Project Name:** [Insert Project Name]  
-**Team Members:** [Member 1, Member 2, Member 3]  
-**SDG Goal Target:** [Goal # and Title]
- 
+**Project Name:** [FixMyStreet]  
+**Team Members:** [Ian Uribe Maldonado, Jose Emiliano Gomez Cortes, Santiago de la Torre Zamudio]  
+**SDG Goal Target:** [Goal #11 Sustainable cities and communities]
+
 ---
- 
-## Week [X] Log Entry
-*Duplicate this section for each week. If no AI was used this week, state: "No Generative AI was used in Week X."*
- 
+
+## Week [1] Log Entry
+
+_Duplicate this section for each week. If no AI was used this week, state: "No Generative AI was used in Week X."_
+
 ### 1. High-Level Goal
-*What feature, component, or bug were you trying to solve this week?*
-* **Example:** Setting up a responsive navbar with Bootstrap that collapses on mobile viewports.
- 
+
+_What feature, component, or bug were you trying to solve this week?_
+
+- **Arrangement of main page components:** Arranging two different heroes and cards in the main page as well as ideal.
+
 ### 2. The Interaction Log
-*Document the primary prompts you used to generate the base code.*
- 
-| AI Tool Used | Exact Initial Prompt | What the AI Generated (Summary/Snippet) |
-| :--- | :--- | :--- |
-| *e.g., ChatGPT-4o* | *"Create a responsive navigation bar using Bootstrap 5 that has links for Home, SDG Dashboard, and Team Profile. Center the links on mobile and right-align them on desktop."* | Generated full HTML structure with standard Bootstrap utility classes (`navbar-expand-lg`, `collapse navbar-collapse`, etc.). |
- 
+
+_Document the primary prompts you used to generate the base code._
+
+| AI Tool Used       | Exact Initial Prompt                                                                                                                                                                                                                                                                                                                                                                                                                                    | What the AI Generated (Summary/Snippet) |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------- |
+| _e.g., ChatGPT-4o_ | \_"how would you do a web main page where you have the website title on top followed by a hero with a photo spanning the whole width of the page like the banner of a youtube channel with some text on top of the hero and a get started button at the bottom of that page. this would be for the project i have talked you about the interactive map on reporting issues on a city so also help me decide on a color palette that fits on that theme" |
+
 ### 3. The Human Audit & Modifications
-*What did the AI get wrong or omit? What manual changes did you make to integrate this code into your existing application structure? (Write 2-3 sentences explaining your adjustments).*
-* **What we changed/added:** The AI-generated code used static mock hrefs. We modified the HTML to use dynamic Express routing paths (`/` and `/sdg-dashboard`). We also adjusted the CSS padding manually to align with our project's custom color palette, and updated the responsive toggle button's `data-bs-target` to match our custom navbar wrapper ID.
- 
+
+_What did the AI get wrong or omit? What manual changes did you make to integrate this code into your existing application structure? (Write 2-3 sentences explaining your adjustments)._
+
+- **What we changed/added:** The AI-generated code had elements which sizes were not ideal. We modified the css so that everything fitted how we wanted to. The code also had placeholder text for some titles and elements which we changed to text more fitting to the project. Added spacing that was missing between the two heroes with padding.
+
 ### 4. Integration & Learnings
-*How does this code integrate with the rest of your system? What is the core mechanism you learned?*
-* **Core Mechanics:** The navbar works by utilizing Bootstrap's responsive breakpoints. The `navbar-expand-lg` class keeps it expanded on desktop but triggers the collapsable menu via JS triggers on screen widths below 992px. We had to ensure the Bootstrap bundle JS script was correctly loaded in our base template.
- 
+
+_How does this code integrate with the rest of your system? What is the core mechanism you learned?_
+
+- **Core Mechanics:** The two heroes sit one on top of another using sections and a 100% width linking the backgrond images through the css. The cards are distributed evenly through the bootstrap system of rows and columns
+
 ### 5. Oral Defense Self-Check
+
 - [ ] We can explain every single line of this code.
-- [ ] We understand how the asynchronous operations/CSS classes used here affect other components.
+- [ ] We understand why each element looks how it does based on the css and the bootstrap classes.
 - [ ] We know exactly which file and line numbers this code is located in our repository.
+- [ ] We didnt copy the whole code generated by the ai. We made it our own
