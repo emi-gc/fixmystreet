@@ -112,3 +112,59 @@ _What must be done next to build on this session's progress?_
 
 1. Learn how to make pop up windows to submit the reports when clickin on the buttons.
 2. Development of the js to manage the action listeners and forms interactions with the user.
+
+## Session [4] Log Entry
+
+_Duplicate this section for each active coding session, class lab sprint, or out-of-class development block._
+
+### ⏱️ Session Overview
+
+- **Date:** [2026-10-20]
+- **Module/Feature Scope:** [node js and apis]
+- **Est. Time Invested:** [2 hours]
+- **Active Developers:** [Ian Uribe Maldonado]
+
+### 🎯 Session Goals
+
+_Identify what you planned to accomplish before starting to write code._
+
+- [ ] Goal 1: [ render the interactive map with the api]
+- [ ] Goal 2: [ place a marker with the information given from the form ]
+- [ ] Goal 3: [ save the marker information in an array (array is placeholder for the database)]
+
+### 🔨 Tasks Completed
+
+_Describe what you actually worked on during this session._
+
+- [x] **map preview and interactive map:** created the map preview section and the interactive map for reporting issues.
+- [x] **placing markers:** created the form to upload the information and displayed a custom marker with the information given.
+- [x] **marker saving:** stored the marker's information inside the server.js in a placeholder array and rendered every marker placed and stored inside onto the map.
+
+### 🧠 Concepts Mastered & Key Learnings
+
+_What technical concepts did you learn or consolidate during this session? Explain the underlying mechanics in 2-3 sentences._
+
+- **use of api:** I understood better how to request certain information from an external restfull api.
+- **post method** understanding in how to use the post method to gather information from the user and use that information to display something.
+
+### 🛠️ Systematic Bug & Error Tracker
+
+_Record technical roadblocks faced and how they were systematically resolved. Treat these as study guides for your Oral Defense!_
+
+- **Roadblock 1 (The Error):**
+  - ❌ \_Error Message / Behavior: map not rendering.
+  - ⚙️ \_Diagnostic Action: checked the <script> tag existance and where it was declared and checked the <div> that correctly only have the id="map". Looked at the css if the map has a size declared.
+  - ✅ \_Root Cause & Resolution: the scripts where outside the body of the html and was declared twice.
+
+### 📚 Documentation & Reference Links
+
+_List any documentation, textbooks, or tutorials utilized during development._
+
+- Leaflet documentation - https://leafletjs.com/reference.html
+
+### 🔮 Next Horizon Actions
+
+_What must be done next to build on this session's progress?_
+
+1. Learn how to store the markers inside the mongoDB database and how to fetch for the info and display every marker.
+2. Think of a way to make more easy to read every marker or have a way to group markers reporting the same problem in the same place.
