@@ -53,6 +53,16 @@
                             <option value="Other">Other</option>
                         </select>
                     </div>
+                    <div id="otherIssueContainer" class="mt-3" style="display: none;">
+                        <label for="otherIssue" class="form-label">Specify the issue</label>
+                        <input
+                            type="text"
+                            id="otherIssue"
+                            name="otherIssue"
+                            class="form-control"
+                            placeholder="Enter the type of issue"
+                        >
+                    </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe the problem and where it is located." required></textarea>
@@ -103,6 +113,22 @@
                 },
                 { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
             );
+        });
+    </script>
+    <script>
+        const issueType = document.getElementById("issueType");
+        const otherIssueContainer = document.getElementById("otherIssueContainer");
+        const otherIssue = document.getElementById("otherIssue");
+        
+        issueType.addEventListener("change", function () {
+            if (this.value === "Other") {
+                otherIssueContainer.style.display = "block";
+                otherIssue.required = true;
+            } else {
+                otherIssueContainer.style.display = "none";
+                otherIssue.required = false;
+                otherIssue.value = "";
+            }
         });
     </script>
     <script src="./js/map.js"></script>

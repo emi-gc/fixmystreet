@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/reports", (req, res) => {
-  const { issueType, description, latitude, longitude } = req.body;
+  const { issueType, description, latitude, longitude, otherIssue } = req.body;
   const parsedLatitude = Number(latitude);
   const parsedLongitude = Number(longitude);
 
@@ -39,13 +39,24 @@ app.post("/reports", (req, res) => {
     return res.status(400).send("Issue type, description, and your location are required.");
   }
 
-  reports.push({
+  if(issueType === "Other"){
+    reports.push({
     id: reports.length + 1,
-    issueType,
+    issueType: otherIssue.trim(),
     description: description.trim(),
     location: { latitude: parsedLatitude, longitude: parsedLongitude },
     createdAt: new Date().toISOString(),
   });
+  }else{
+    reports.push({
+      id: reports.length + 1,
+      issueType,
+      description: description.trim(),
+      location: { latitude: parsedLatitude, longitude: parsedLongitude },
+      createdAt: new Date().toISOString(),
+    });
+  }
+
 
   return res.status(201).send(`
     <h1>Report submitted</h1>
