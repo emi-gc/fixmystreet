@@ -1,0 +1,7 @@
+For this second delivery, i feel like our teamwork has improved vastly. Now that we all have more idea on what we're doing, i feel like we are more confident when proposing changes or new ideas to implement onto the project.
+
+This second midterm has been filled with lots of new information and new things to learn, but thanks to de development of this project, i can see how everything that we have reviewed in class starts to make sense and it all comes together to create a more complete web application. Still, i feel like im a little far away from knowing how to do everything by heart. I find myself reviewing the class work to recal certain things or asking an ai agent how was i supposed to do what i wanted to. But as i continue to develop more projects and write more code im sure that i'll be able to remember how to do most of the things we've seen through this class.
+
+To finish off, give props to my teamates. Already being friends before we started this project has helped with the comunication and knowing eachother's strenghts. That being said, being good friends doesn't mean that they will be putting in the work. But that was no problem whith our team. Everyone has the initiative to push foward and equitably distribute the work between us 3. Even though one of us is very busy doing real work in the industry. (looking at you santi).
+
+Slowly but surely i can feel my improvement over the course of this semester and will continue to give it my all.

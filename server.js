@@ -67,11 +67,8 @@ app.post("/reports", async (req, res) => {
       }
     });
 
-    return res.status(201).send(`
-      <h1>Report submitted</h1>
-      <p>Thank you for helping improve your community.</p>
-      <p><a href="/index.html">Submit another report</a></p>
-    `);
+    // show the thank-you page after the report is saved
+    return res.status(201).sendFile(path.join(publicDirectory, "report-submitted.html"));
     
   } catch (error) {
     console.error("Error saving report: ", error);
