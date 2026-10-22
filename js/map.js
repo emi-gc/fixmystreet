@@ -11,32 +11,41 @@ if (mapElement) {
         attribution: '&copy; OpenStreetMap contributors'
     });
     mapTiles.addTo(map);
+    const reportsStatus = document.getElementById("reportsStatus");
+
+    function validCoordinates(latitude, longitude) {
+        return typeof latitude === "number" && Number.isFinite(latitude) &&
+            latitude >= -90 && latitude <= 90 &&
+            typeof longitude === "number" && Number.isFinite(longitude) &&
+            longitude >= -180 && longitude <= 180;
+    }
 
     // show the saved reports
     async function loadReports() {
         try {
             // wait for the server to send the saved reports
-            const response = await fetch("reports");
+            const response = await fetch("/reports", { cache: "no-store" });
 
             if (!response.ok) {
                 throw new Error("Could not load reports");
             }
 
             const reports = await response.json();
+            if (!Array.isArray(reports)) {
+                throw new Error("Invalid reports response");
+            }
 
             for (let i = 0; i < reports.length; i++) {
                 const report = reports[i];
 
                 // skip reports that have no usable coordinates
-                if (!report.location) {
+                if (!report?.location) {
                     continue;
                 }
 
-                const latitude = Number(report.location.latitude);
-                const longitude = Number(report.location.longitude);
+                const { latitude, longitude } = report.location;
 
-                if (!Number.isFinite(latitude) ||
-                    !Number.isFinite(longitude)) {
+                if (!validCoordinates(latitude, longitude)) {
                     continue;
                 }
 
@@ -50,7 +59,11 @@ if (mapElement) {
                 savedPin.addTo(map);
                 savedPin.bindPopup(popup);
             }
+            if (reportsStatus) reportsStatus.textContent = "";
         } catch (error) {
+            if (reportsStatus) {
+                reportsStatus.textContent = "Could not load saved reports. Reload the page to try again.";
+            }
             console.error("Error loading reports:", error);
         }
     }
@@ -73,6 +86,10 @@ if (mapElement) {
 
         // replace the old pin and save the new coordinates
         function placeReportPin(latitude, longitude) {
+            if (!validCoordinates(latitude, longitude)) {
+                locationStatus.textContent = "Invalid location. Click the map or try your location again.";
+                return false;
+            }
             if (reportPin) {
                 map.removeLayer(reportPin);
             }
@@ -85,11 +102,14 @@ if (mapElement) {
             longitudeInput.value = longitude;
             removePinButton.disabled = false;
             locationStatus.textContent = "Report pin placed. Click the map to move it.";
+            return true;
         }
 
         // a map click gives us the coordinates of that point
         function selectOnMap(event) {
-            placeReportPin(event.latlng.lat, event.latlng.lng);
+            // Leaflet can return longitudes beyond +/-180 after panning around the world.
+            const coordinates = event.latlng.wrap();
+            placeReportPin(coordinates.lat, coordinates.lng);
         }
 
         // ask for location only when the button is pressed
@@ -110,7 +130,10 @@ if (mapElement) {
         function showLocation(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            placeReportPin(latitude, longitude);
+            if (!placeReportPin(latitude, longitude)) {
+                useLocationButton.disabled = false;
+                return;
+            }
 
             // replace the blue dot without changing any saved reports
             if (blueDot) {
@@ -153,7 +176,8 @@ if (mapElement) {
 
         // do not submit until a pin is placed
         function checkPin(event) {
-            if (!reportPin) {
+            if (!reportPin || !latitudeInput.value.trim() || !longitudeInput.value.trim() ||
+                !validCoordinates(Number(latitudeInput.value), Number(longitudeInput.value))) {
                 event.preventDefault();
                 locationStatus.textContent = "Click the map or use your location before submitting.";
             }

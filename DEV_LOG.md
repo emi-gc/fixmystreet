@@ -279,4 +279,32 @@ _List any documentation, textbooks, or tutorials utilized during development._
 _What must be done next to build on this session's progress?_
 
 1. Ask for opinions on our web page, what should we add, what should we change, etc.
-2. when saving to the database check if the user selected "other" and use the otherType variable to write it to the database.
+2. Completed in PR #4: server.js uses otherIssue (the actual form field name) as issueType when Other is selected. See the 2026-10-22 integration audit below for validation and map follow-up.
+
+## Integration audit, 2026-10-22
+
+### Current status and documentation correction
+
+- PR #3 (`bd5fa51`) integrated the MongoDB model and report routes. PR #4 (`6432e7a`, including `a1140ca`) already restored custom Other text before this audit. Both PRs are merged, not merely closed. GitHub records their merge dates as 2026-10-22 UTC.
+- The Session 5 next action was stale and named `otherType`, while the actual field is `otherIssue`. That action is now marked completed. Its database connection and read/display goals were implemented; the checks below provide current integration evidence.
+- The Report schema already requires trimmed text, numeric coordinate bounds and timestamps. Its 30-day TTL index is unchanged.
+
+### Defects corrected
+
+- URL-encoded coordinate whitespace could become zero through `Number("   ")`. The server now rejects missing, blank, repeated/non-string, nonfinite and out-of-range fields before writing; legitimate zero coordinates remain accepted. Malformed text fields produce 400 instead of a trim-related 500.
+- The listener previously started before the MongoDB connection resolved. Startup now waits for the database, supports `MONGODB_URI` for local testing, and exits on connection failure. Removed the global public-DNS override so connections use the host's configured resolver.
+- Leaflet loading previously coerced null/blank coordinates to zero and did not reject out-of-range legacy data. It now skips invalid records, continues rendering valid ones, and shows a visible message on read failure. POST and fetch both target `/reports`; reads disable caching.
+- Map clicks now wrap longitude into the range the server accepts. The form validates selected coordinates, retains the remove-pin/permission-error flow, and synchronizes the Other input on page load/restore and category changes. Blank custom text/description is also blocked in the browser.
+- The existing `await Report.create(...)` followed by the HTML response with status 201 was correct and is preserved. Popup content still uses `textContent`.
+
+### Verification
+
+- Added Node tests for the Express request/response contract, invalid inputs, save timing, database errors, startup failure, map loading, literal popup text, Other toggling and location controls.
+- Ran the optional real MongoDB integration test against an isolated MongoDB 8.2.6 database. Confirmed the custom category and numeric coordinates in storage and readback through a second app instance.
+- Ran a Chromium browser check using real Leaflet 1.9.4, the actual Express server and isolated MongoDB: Other empty/whitespace rejection, map placement/removal, browser POST returning 201, saved document and GET readback, report pins after navigation/reload on the report and Home pages, safe popup text, permission failure/success, wrapped longitude, and a visible read-error message all passed. No page JavaScript errors occurred. External tiles/Bootstrap were replaced for a deterministic functional check; production Atlas and CDN availability were not verified.
+- See README.md for local setup, automated checks and a manual case matrix. No production database was accessed or migrated.
+
+### Next actions
+
+1. Run the README cases against the team's development Atlas connection and review the form/map on mobile devices.
+2. Gather user feedback on the report flow and page layout.

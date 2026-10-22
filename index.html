@@ -32,6 +32,7 @@
         <div class="main-map-container mt-4 text-center justify">
             <div id="map">
             </div>
+            <p id="reportsStatus" class="form-text" role="status" aria-live="polite"></p>
         </div>
     </section>
 
@@ -41,7 +42,7 @@
         <div class="container py-5">
             <div class="card report-form-card p-4 shadow-sm">
                 <h2 class="mb-4">Submit a problem</h2>
-                <form id="reportForm" action="reports" method="post">
+                <form id="reportForm" action="/reports" method="post">
                     <div class="mb-3">
                         <label for="issueType" class="form-label">Issue type</label>
                         <select id="issueType" name="issueType" class="form-select" required>
@@ -96,15 +97,30 @@
         const otherIssueContainer = document.getElementById("otherIssueContainer");
         const otherIssue = document.getElementById("otherIssue");
 
-        issueType.addEventListener("change", function () {
-            if (this.value === "Other") {
+        function syncOtherIssue() {
+            if (issueType.value === "Other") {
                 otherIssueContainer.style.display = "block";
                 otherIssue.required = true;
+                otherIssue.disabled = false;
             } else {
                 otherIssueContainer.style.display = "none";
                 otherIssue.required = false;
+                otherIssue.disabled = true;
                 otherIssue.value = "";
             }
+            otherIssue.setCustomValidity(issueType.value === "Other" && otherIssue.value && !otherIssue.value.trim()
+                ? "Specify the issue." : "");
+        }
+
+        issueType.addEventListener("change", syncOtherIssue);
+        window.addEventListener("pageshow", syncOtherIssue);
+        syncOtherIssue();
+        otherIssue.addEventListener("input", function () {
+            this.setCustomValidity(this.value.trim() ? "" : "Specify the issue.");
+        });
+        const description = document.getElementById("description");
+        description.addEventListener("input", function () {
+            this.setCustomValidity(this.value.trim() ? "" : "Describe the problem.");
         });
     </script>
     <script src="./js/map.js"></script>
