@@ -50,7 +50,8 @@ if (mapElement) {
             console.error("Error loading reports:", error);
         }
     }
-
+    //this is a function given by mr chatgpt itself that prevents html or js injection :)
+    //had to look that one up
     function escapeHTML(value = "") {
         return String(value).replace(/[&<>"']/g, character => ({
             "&": "&amp;",

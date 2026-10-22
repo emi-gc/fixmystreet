@@ -70,7 +70,6 @@ _Duplicate this section for each active coding session, class lab sprint, or out
 
 - # **USED LIVE SHARE EXTENSION FOR THIS SESSION**
 
-
 ### 🎯 Session Goals
 
 _Identify what you planned to accomplish before starting to write code._
@@ -114,7 +113,6 @@ _What must be done next to build on this session's progress?_
 
 1. Fix the scaling in the navbar for phones and tablets
 2. Start and finish the about page and polish the map page visually.
-
 
 ## Session [3] Log Entry
 
@@ -171,59 +169,114 @@ _What must be done next to build on this session's progress?_
 1. Fix the Map page design and layout.
 2. Refine HTML and style for the entire webpage
 
-
 ## Session [4] Log Entry
 
 _Duplicate this section for each active coding session, class lab sprint, or out-of-class development block._
 
 ### ⏱️ Session Overview
 
-- **Date:** [2026-09-09]
-- **Module/Feature Scope:** [CSS styles / html about page / refining all html and one uniform style]
-- **Est. Time Invested:** [3 hours]
+- **Date:** [2026-10-19]
+- **Module/Feature Scope:** [js / apis]
+- **Est. Time Invested:** [2 hours]
 - **Active Developers:** [Ian Uribe Maldonado]
 
 ### 🎯 Session Goals
 
 _Identify what you planned to accomplish before starting to write code._
 
-- [ ] Goal 1: [ add a getting started section and a map preview onto the main page]
-- [ ] Goal 2: [ reformat the map page with the buttons ]
-- [ ] Goal 3: [ give a uniform style to the whole web]
+- [ ] Goal 1: [ setup the server.js and environment overall to run the whole page]
+- [ ] Goal 2: [ change the static images for the acutal interactive map ]
+- [ ] Goal 3: [ make the form for the reports and display a pin with the information]
 
 ### 🔨 Tasks Completed
 
 _Describe what you actually worked on during this session._
 
-- [x] **getting started and map preview:** created the map preview section and the getting started section with general description on the main page.
-- [x] **redo of map page:** changed the distribution of the buttons and map as well as making them addapt to the window size.
-- [x] **CSS styles:** restyled the map page so it follows the same color palette and style as the main page.
+- [x] **setup:** created the server.js and all the folders we might need for other scripts.
+- [x] **interactive map:** looked up a free interactive map api to use and implemented it to the webpage.
+- [x] **Pins:** created the form for submitting the reports and using that information to create the pin's display.
 
 ### 🧠 Concepts Mastered & Key Learnings
 
 _What technical concepts did you learn or consolidate during this session? Explain the underlying mechanics in 2-3 sentences._
 
-- **DOM tree understanding:** I got a better understanding on how does the css manages to get a hold of different components based on certain notacion like the . or the # or separating elements with a space to get the inmediate child of the component.
-- **Managing the elements and alignment** Understood how to change the sizing and alignment of elements so that when the window's size changes, all the elements are still displayed neatly
+- **Use of api:** Got a better grasp on what are the steps to use external apis in my own development
+- **Conection between html/css and the server** Understood how does the server.js handles all diferent scripts and looks inside the project's folders to display our web page on the browser
 
 ### 🛠️ Systematic Bug & Error Tracker
 
 _Record technical roadblocks faced and how they were systematically resolved. Treat these as study guides for your Oral Defense!_
 
-- **Roadblock 1 (The Error):**
-  - ❌ _Error Message / Behavior:_ Map not shrinking in size when making the window smaller.
-  - ⚙️ _Diagnostic Action:_ Checked which attributes where giving the map its size.
-  - ✅ _Root Cause & Resolution:_ The attribute width and height was set on % with no max-width declared so it grew indefinitely.
+- **Roadblock 1 (Map not displaying):**
+  - ❌ \_Error Message / Behavior: Map not appearing on neither of the pages where the map was supposed to be.
+  - ⚙️ \_Diagnostic Action: checked the map.js, the divs with the id "map" on them, the import of the interactive map url and the styling of the id map inside the css.
+  - ✅ \_Root Cause & Resolution: the script tag was outside the body of the html.
 
 ### 📚 Documentation & Reference Links
 
 _List any documentation, textbooks, or tutorials utilized during development._
 
-- Bootstrap documentation - [Bootstrap](https://getbootstrap.com/docs/5.3/layout/grid/)
+- LeafletJs documentation - [Leafletjs](https://leafletjs.com/reference.html)
 
 ### 🔮 Next Horizon Actions
 
 _What must be done next to build on this session's progress?_
 
-1. Learn how to make pop up windows to submit the reports when clickin on the buttons.
-2. Development of the js to manage the action listeners and forms interactions with the user.
+1. Connect our js with the database to store the reports.
+2. handle when the user selects the "other" report option so it asks the user what is the report category.
+
+## Session [5] Log Entry
+
+_Duplicate this section for each active coding session, class lab sprint, or out-of-class development block._
+
+### ⏱️ Session Overview
+
+- **Date:** [2026-10-21]
+- **Module/Feature Scope:** [mongodb / js]
+- **Est. Time Invested:** [2 hours]
+- **Active Developers:** [Ian Uribe Maldonado]
+
+### 🎯 Session Goals
+
+_Identify what you planned to accomplish before starting to write code._
+
+- [ ] Goal 1: [ connect our database to the js ]
+- [ ] Goal 2: [ read and display the information from the database to the map ]
+- [ ] Goal 3: [ n/a ]
+
+### 🔨 Tasks Completed
+
+_Describe what you actually worked on during this session._
+
+- [x] **connect database:** created credentials for the database and created the connectdb.js to link the database with the rest of the web page.
+- [x] **read from database:** created the Report.js as the structure for all the reports being created and written onto the db so that those same reports can be read.
+- [x] **handle "other" selection:** made it so when selecting "other" in report type, another text box appears so you can write what that "other" thing is.
+
+### 🧠 Concepts Mastered & Key Learnings
+
+_What technical concepts did you learn or consolidate during this session? Explain the underlying mechanics in 2-3 sentences._
+
+- **databases:** I understood better how do you connect your js to the database through mongoose and a function. Also learned how does our web page asks for the reports to our database.
+- **database permissions** Understood how to use .env to store important information, making it accesible to our code without exposing it to the rest of the world and how to give permissions to certain ip adresses to write and read onto the database.
+
+### 🛠️ Systematic Bug & Error Tracker
+
+_Record technical roadblocks faced and how they were systematically resolved. Treat these as study guides for your Oral Defense!_
+
+- **Roadblock 1 (MongoDB not being able to connect to the server.js):**
+  - ❌ \_Error Message / Behavior: Database Connection Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+  - ⚙️ \_Diagnostic Action: looked at the whitelist inside Atlas MongoDB and double checked the user and password inside the .env.
+  - ✅ \_Root Cause & Resolution: my ip adress wasnt added to the whitelist so it couldnt read.
+
+### 📚 Documentation & Reference Links
+
+_List any documentation, textbooks, or tutorials utilized during development._
+
+- Past classes [s17-routing-lab]
+
+### 🔮 Next Horizon Actions
+
+_What must be done next to build on this session's progress?_
+
+1. Ask for opinions on our web page, what should we add, what should we change, etc.
+2. when saving to the database check if the user selected "other" and use the otherType variable to write it to the database.
