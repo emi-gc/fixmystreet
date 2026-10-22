@@ -40,11 +40,13 @@ app.post("/reports", async (req, res) => {
     const { issueType, description, latitude, longitude, otherIssue } = req.body;
     const parsedLatitude = Number(latitude);
     const parsedLongitude = Number(longitude);
+    const customIssueType = otherIssue?.trim();
 
     //check content of values from the form
     if (
       !issueType ||
       !description?.trim() ||
+      (issueType === "Other" && !customIssueType) ||
       latitude === "" ||
       longitude === "" ||
       !Number.isFinite(parsedLatitude) ||
@@ -58,7 +60,7 @@ app.post("/reports", async (req, res) => {
     }
     //create the report in the database
     await Report.create({
-      issueType,
+      issueType: issueType === "Other" ? customIssueType : issueType,
       description: description.trim(),
       location: {
         latitude: parsedLatitude,
