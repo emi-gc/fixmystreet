@@ -14,4 +14,6 @@ of good communication and we were able to deliver what we wanted and fix everyth
 I want to keep improving at web dev, I feel like it's one of the toughest things I've faced in school and it still confuses me a little when I look at my code, but I know it works and
 if it ain't broke, don't fix it.
 
+i also learned what a nojekyll is i guess
+
 I will continue coding and trying harder, and hope to become a better dev with time.
