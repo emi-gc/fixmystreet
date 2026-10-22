@@ -16,7 +16,7 @@ if (mapElement) {
     async function loadReports() {
         try {
             // wait for the server to send the saved reports
-            const response = await fetch("/reports");
+            const response = await fetch("reports");
 
             if (!response.ok) {
                 throw new Error("Could not load reports");
