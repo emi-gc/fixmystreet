@@ -6,6 +6,23 @@
 
 body {
     background-color: #1a4161;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > main {
+    flex: 1;
+}
+
+/* keep keyboard focus easy to see */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #287ff0;
+    outline-offset: 3px;
 }
 
 .hero {
@@ -71,7 +88,7 @@ body {
 
     margin: 0 auto;
 
-    background-image: url("../images/mapAndPins.jpg");
+    background-image: url("../images/MapAndPins.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -143,21 +160,46 @@ body {
 }
 
 .first-steps-section {
-    padding: 100px;
+    padding: 60px 24px 80px;
 }
+
+.steps-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .card.steps-card {
-    background-color: #E9C46A;
-    width: 18rem;
+    background-color: #f4f8fb;
+    color: #172A3A;
+    border: 1px solid #cfe3e5;
+    border-top: 4px solid #2A9D8F;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 20rem;
     min-height: 330px;
+    padding: 24px 16px 16px;
+    align-items: center;
 
     animation: fadeIn 1s ease-in;
+}
+
+/* give every icon the same centered space */
+.steps-icon-container {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e3efef;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .steps-card-icon {
     width: 100px;
     height: 100px;
     display: block;
-    margin: 20px auto 0;
+    object-fit: contain;
 }
 
 .card.map-card {
@@ -221,6 +263,75 @@ body {
     background-color: #172A3A;
     color: #f8f9fa;
     font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* simple pages share the same card and colors */
+.page-section {
+    background-color: #f4f8fb;
+    padding: 64px 20px;
+}
+
+.page-card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px;
+    color: #172A3A;
+    border: 1px solid #dce5eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(23, 42, 58, 0.06);
+}
+
+.page-card h1 {
+    font-weight: 700;
+}
+
+.page-card h2 {
+    font-size: 1.3rem;
+    margin-top: 28px;
+}
+
+.page-intro {
+    color: #526575;
+    line-height: 1.7;
+}
+
+.success-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background-color: #e3efef;
+    color: #19766b;
+    font-size: 2.5rem;
+}
+
+.success-note {
+    background-color: #f4f8fb;
+    border-radius: 8px;
+    padding: 16px;
+    color: #526575;
+}
+
+@media (max-width: 575px) {
+    .page-section {
+        padding: 36px 16px;
+    }
+
+    .page-card {
+        padding: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero,
+    .card.steps-card,
+    .main-map-container {
+        animation: none;
+    }
 }
 
 .footer-brand {

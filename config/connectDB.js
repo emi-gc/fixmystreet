@@ -1,4 +1,8 @@
 import mongoose from "mongoose";
+import dns from "node:dns";
+
+// use public dns to find the mongodb servers because otherwise it doesnt work for reasons i dont fully understand or something
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 export const connectDB = async (mongoURL) => {
     try {

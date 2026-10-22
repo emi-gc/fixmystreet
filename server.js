@@ -11,7 +11,6 @@ const port = 3000;
 const currentFile = fileURLToPath(import.meta.url);
 
 const currentDirectory = path.dirname(currentFile);
-const publicDirectory = path.join(currentDirectory, "public");
 const dbuser = process.env.DB_USER;//get user for database from .env
 const dbpass = process.env.DB_PASSWORD;//get password for database user from.env
 const dbname = 'reports';//name of the database
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //deliver the mainpage html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "mainPage.html"));
+  res.sendFile(path.join(currentDirectory, "mainPage.html"));
 });
 
 //gets the reports from the database
@@ -41,11 +40,13 @@ app.post("/reports", async (req, res) => {
     const { issueType, description, latitude, longitude, otherIssue } = req.body;
     const parsedLatitude = Number(latitude);
     const parsedLongitude = Number(longitude);
+    const customIssueType = otherIssue?.trim();
 
     //check content of values from the form
     if (
       !issueType ||
       !description?.trim() ||
+      (issueType === "Other" && !customIssueType) ||
       latitude === "" ||
       longitude === "" ||
       !Number.isFinite(parsedLatitude) ||
@@ -59,7 +60,7 @@ app.post("/reports", async (req, res) => {
     }
     //create the report in the database
     await Report.create({
-      issueType,
+      issueType: issueType === "Other" ? customIssueType : issueType,
       description: description.trim(),
       location: {
         latitude: parsedLatitude,
@@ -67,11 +68,8 @@ app.post("/reports", async (req, res) => {
       }
     });
 
-    return res.status(201).send(`
-      <h1>Report submitted</h1>
-      <p>Thank you for helping improve your community.</p>
-      <p><a href="/index.html">Submit another report</a></p>
-    `);
+    // show the thank-you page after the report is saved
+    return res.status(201).sendFile(path.join(currentDirectory, "report-submitted.html"));
     
   } catch (error) {
     console.error("Error saving report: ", error);
@@ -79,7 +77,23 @@ app.post("/reports", async (req, res) => {
   }
 });
 
-app.use(express.static(publicDirectory));
+// the html files are now beside server.js
+app.get([
+  "/mainPage.html",
+  "/index.html",
+  "/about.html",
+  "/contact.html",
+  "/privacy.html",
+  "/report-submitted.html"
+], (req, res) => {
+  const pageName = path.basename(req.path);
+  res.sendFile(path.join(currentDirectory, pageName));
+});
+
+// serve the website's asset folders
+app.use("/css", express.static(path.join(currentDirectory, "css")));
+app.use("/js", express.static(path.join(currentDirectory, "js")));
+app.use("/images", express.static(path.join(currentDirectory, "images")));
 
 //function to run everything at the same time (for some reason it was slower to start server.js)
 // async function startServer() {

@@ -1,0 +1,12 @@
+# pending shit to fix
+
+1. Colors and centering of images main page cards
+2. Privacy and accesibility page
+3. Use location button
+4. Remove pin button
+5. Database Integration
+6. Total reports in one area (maybe by colors visually)
+7. Where is user pin/icon
+8. Contact page
+9. Dev log and prompt log
+i hate this

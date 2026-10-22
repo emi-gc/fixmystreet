@@ -41,7 +41,7 @@
         <div class="container py-5">
             <div class="card report-form-card p-4 shadow-sm">
                 <h2 class="mb-4">Submit a problem</h2>
-                <form id="reportForm" action="/reports" method="post">
+                <form id="reportForm" action="reports" method="post">
                     <div class="mb-3">
                         <label for="issueType" class="form-label">Issue type</label>
                         <select id="issueType" name="issueType" class="form-select" required>
@@ -69,8 +69,12 @@
                     </div>
                     <input id="latitude" name="latitude" type="hidden">
                     <input id="longitude" name="longitude" type="hidden">
-                    <p id="locationStatus" class="form-text mb-3" aria-live="polite">Your location will be requested when you submit the report.</p>
-                    <button type="submit" class="btn btn-primary">Submit report</button>
+                    <p id="locationStatus" class="form-text mb-3" aria-live="polite">Click the map or use your location to place a report pin.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-primary">Submit report</button>
+                        <button id="useLocation" type="button" class="btn btn-outline-primary">Use my location</button>
+                        <button id="removePin" type="button" class="btn btn-outline-secondary" disabled>Remove pin</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -80,46 +84,18 @@
         <div class="container py-4">
             <div class="row gy-3 align-items-center">
                 <div class="col-md-5"><a class="footer-brand" href="mainPage.html">📍 FixMyStreet</a><p class="mb-0 mt-2">Helping communities report and follow local street issues.</p></div>
-                <div class="col-md-4"><nav class="footer-links" aria-label="Footer navigation"><a href="mainPage.html">Home</a><a href="index.html">Map</a><a href="about.html">About</a><a href="mailto:contact@fixmystreet.local">Contact</a></nav></div>
-                <div class="col-md-3 text-md-end"><a href="#" class="footer-policy">Privacy &amp; accessibility</a><p class="mb-0 mt-2">&copy; 2026 FixMyStreet</p></div>
+                <div class="col-md-4"><nav class="footer-links" aria-label="Footer navigation"><a href="mainPage.html">Home</a><a href="index.html">Map</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div>
+                <div class="col-md-3 text-md-end"><a href="privacy.html" class="footer-policy">Privacy &amp; accessibility</a><p class="mb-0 mt-2">&copy; 2026 FixMyStreet</p></div>
             </div>
         </div>
     </footer>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        const reportForm = document.querySelector("#reportForm");
-        const locationStatus = document.querySelector("#locationStatus");
-
-        reportForm.addEventListener("submit", (event) => {
-            if (reportForm.dataset.locationReady === "true") return;
-            event.preventDefault();
-
-            if (!navigator.geolocation) {
-                locationStatus.textContent = "Your browser does not support location services.";
-                return;
-            }
-
-            locationStatus.textContent = "Getting your location...";
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    document.querySelector("#latitude").value = position.coords.latitude;
-                    document.querySelector("#longitude").value = position.coords.longitude;
-                    reportForm.dataset.locationReady = "true";
-                    locationStatus.textContent = "Location found. Sending report...";
-                    reportForm.requestSubmit();
-                },
-                () => {
-                    locationStatus.textContent = "Location permission is required to submit a report.";
-                },
-                { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-            );
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const issueType = document.getElementById("issueType");
         const otherIssueContainer = document.getElementById("otherIssueContainer");
         const otherIssue = document.getElementById("otherIssue");
-        
+
         issueType.addEventListener("change", function () {
             if (this.value === "Other") {
                 otherIssueContainer.style.display = "block";
