@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { loadEnvFile } from "node:process";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const currentFile = fileURLToPath(import.meta.url);
 
 const currentDirectory = path.dirname(currentFile);
