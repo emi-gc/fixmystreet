@@ -280,3 +280,59 @@ _What must be done next to build on this session's progress?_
 
 1. Ask for opinions on our web page, what should we add, what should we change, etc.
 2. when saving to the database check if the user selected "other" and use the otherType variable to write it to the database.
+
+## Session [6] Log Entry
+
+### Session Overview
+
+- **Date:** [2026-10-21]
+- **Module/Feature Scope:** Website styling, map controls, and supporting pages
+- **Est. Time Invested:** 3.5 hours
+- **Active Developers:** Emiliano Gomez
+- **AI Assistance:** Codex guidance to make changes
+
+### Session Goals
+
+- [x] Improve the homepage cards.
+- [x] Add privacy and accessibility information.
+- [x] Make location selection reusable.
+- [x] Add pin removal and a blue location dot.
+- [x] Create a contact page template.
+- [x] Match the report confirmation to the website's design.
+
+### Tasks Completed
+
+- [x] **Item 1:** Replaced the yellow card backgrounds with pale backgrounds and teal borders, center the icons, and adjust their SVG spacing.
+- [x] **Item 2:** Added a short privacy and accessibility page with the existing navigation and footer.
+- [x] **Item 3:** Moved location requests to a separate button that requests a position on each press.
+- [x] **Item 4:** Added a button that removes the selected report pin and clears its coordinates.
+- [x] **Item 5:** Added a blue dot showing the location found by the location button.
+- [x] **Item 6:** Created a contact template with three developer names and sample email links.
+- [x] **Item 7:** Added a styled confirmation page displayed after a report is saved.
+- [x] **Item 8:** Added accesibility features/screen reader for disabilities.
+
+### Concepts & Key Learnings
+
+- **CSS:** Each icon sits inside a container with the same width and height. Using display: flex, justify-content: center, and align-items: center centers the image horizontally and vertically. The matching container sizes keep all three cards consistent.
+
+- **JavaScript:** Clicking “Use my location” asks the browser for the user's position. If it succeeds, the code places a report pin and saves its coordinates in hidden form fields. Clicking “Remove pin” removes that pin and clears those fields so an old location cannot accidentally be submitted.
+
+- **Location Icon:** The blue dot shows the location found by the browser, while the report pin shows where the problem is. They are separate layers because the problem might be somewhere else. Moving or removing the report pin leaves the blue dot in place.
+
+- **Express:** Express chooses a route using both the URL and the request method. GET /reports retrieves saved reports as JSON so JavaScript can display them on the map. POST /reports receives the report form, checks its information, saves it, and returns the styled confirmation page after a successful save.
+
+### Systematic Bug & Error Tracker
+
+- **Original behavior:** Location requests were connected to submitting the report.
+- **Change:** Location selection now has its own button, and submission checks that a report location exists.
+- **Verification:** Checked repeated location clicks, page reloads, manual pin selection, pin removal, and missing-pin validation.
+- **Layout checks:** Verified centered cards and working mobile navigation without horizontal overflow.
+
+### Documentation & Reference Links
+
+- Past classes [s17-routing-lab & express-lab]
+
+### Next Horizon Actions
+
+- Add a "Reports near you" feature so no duplicates exist.
+- Polish the database integration
